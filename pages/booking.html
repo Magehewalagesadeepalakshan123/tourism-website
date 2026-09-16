@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Travel Lanka | Booking</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        Travel Lanka
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="home.html">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="destinations.html">
+                Destinations
+            </a>
+        </li>
+
+        <li>
+            <a href="home.html#packages">
+                Packages
+            </a>
+        </li>
+
+        <li>
+            <a href="home.html#about">
+                About
+            </a>
+        </li>
+
+        <li>
+            <a href="home.html#contact">
+                Contact
+            </a>
+        </li>
+
+    </ul>
+
+    <a
+        href="../index.html"
+        class="logout-btn"
+    >
+        Logout
+    </a>
+
+</nav>
+
+
+<!-- BOOKING HEADER -->
+
+<section class="booking-header">
+
+    <div>
+
+        <p>
+            Plan Your Journey
+        </p>
+
+        <h1>
+            Book Your Trip
+        </h1>
+
+        <span>
+            Complete the form below to reserve your
+            Travel Lanka experience.
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- BOOKING -->
+
+<section class="booking-page">
+
+    <div class="booking-layout">
+
+
+        <!-- FORM -->
+
+        <form
+            class="booking-form"
+            id="bookingForm"
+        >
+
+            <h2>
+                Traveller Information
+            </h2>
+
+            <p class="booking-form-subtitle">
+                Enter your details to continue with your booking.
+            </p>
+
+
+            <!-- NAME -->
+
+            <div class="booking-input-group">
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="customerName"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="booking-input-group">
+
+                <label>
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="customerEmail"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="booking-input-group">
+
+                <label>
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="customerPhone"
+                    placeholder="+94 77 123 4567"
+                    required
+                >
+
+            </div>
+
+
+            <!-- DESTINATION -->
+
+            <div class="booking-input-group">
+
+                <label>
+                    Destination
+                </label>
+
+                <input
+                    type="text"
+                    id="bookingDestinationInput"
+                    readonly
+                >
+
+            </div>
+
+
+            <!-- DATE -->
+
+            <div class="booking-input-group">
+
+                <label>
+                    Travel Date
+                </label>
+
+                <input
+                    type="date"
+                    id="travelDate"
+                    required
+                >
+
+            </div>
+
+
+            <!-- TRAVELLERS -->
+
+            <div class="booking-input-group">
+
+                <label>
+                    Number of Travellers
+                </label>
+
+                <input
+                    type="number"
+                    id="travellers"
+                    min="1"
+                    value="1"
+                    required
+                >
+
+            </div>
+
+
+            <!-- NOTES -->
+
+            <div class="booking-input-group">
+
+                <label>
+                    Special Requests
+                </label>
+
+                <textarea
+                    id="specialRequests"
+                    rows="4"
+                    placeholder="Optional requests..."
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="confirm-booking-btn"
+            >
+                Confirm Booking
+            </button>
+
+
+            <p id="bookingMessage"></p>
+
+        </form>
+
+
+        <!-- SUMMARY -->
+
+        <div class="booking-price-card">
+
+            <h2>
+                Booking Summary
+            </h2>
+
+
+            <div class="booking-price-row">
+
+                <span>
+                    Destination
+                </span>
+
+                <strong id="summaryDestination">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="booking-price-row">
+
+                <span>
+                    Price Per Person
+                </span>
+
+                <strong id="summaryPrice">
+                    LKR 0
+                </strong>
+
+            </div>
+
+
+            <div class="booking-price-row">
+
+                <span>
+                    Travellers
+                </span>
+
+                <strong id="summaryTravellers">
+                    1
+                </strong>
+
+            </div>
+
+
+            <hr>
+
+
+            <div class="booking-total">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="totalPrice">
+                    LKR 0
+                </strong>
+
+            </div>
+
+
+            <a
+                href="destinations.html"
+                class="back-destination"
+            >
+                ← Back to Destinations
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script src="../js/booking.js"></script>
+
+</body>
+
+</html>

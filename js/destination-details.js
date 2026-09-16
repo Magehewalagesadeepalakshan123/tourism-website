@@ -360,3 +360,26 @@ else {
     `;
 
 }
+const bookNowButton =
+    document.getElementById(
+        "bookNowButton"
+    );
+
+
+if (
+    bookNowButton &&
+    destinationID
+) {
+
+    bookNowButton.addEventListener(
+        "click",
+        function() {
+
+            window.location.href =
+                "booking.html?destination=" +
+                destinationID;
+
+        }
+    );
+
+}
