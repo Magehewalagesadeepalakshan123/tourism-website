@@ -1,29 +1,62 @@
-const loginForm = document.getElementById("loginForm");
-
-loginForm.addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    const message = document.getElementById("message");
+const loginForm =
+    document.getElementById("loginForm");
 
 
-    if (email === "" || password === "") {
+loginForm.addEventListener(
+    "submit",
+    function(event) {
 
-        message.style.color = "red";
+        event.preventDefault();
+
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        const message =
+            document
+                .getElementById("message");
+
+
+        if (
+            email === "" ||
+            password === ""
+        ) {
+
+            message.style.color =
+                "red";
+
+
+            message.innerText =
+                "Please enter your email and password.";
+
+            return;
+        }
+
+
+        message.style.color =
+            "green";
+
 
         message.innerText =
-            "Please enter your email and password.";
+            "Login successful!";
 
-        return;
+
+        setTimeout(function() {
+
+            window.location.href =
+                "pages/home.html";
+
+        }, 800);
+
     }
-
-
-    message.style.color = "green";
-
-    message.innerText =
-        "Login form submitted successfully!";
-
-});
+);
