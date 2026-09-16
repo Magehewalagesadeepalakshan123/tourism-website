@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Travel Lanka | Destinations</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+</head>
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        Travel Lanka
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="home.html">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="destinations.html">
+                Destinations
+            </a>
+        </li>
+
+        <li>
+            <a href="home.html#packages">
+                Packages
+            </a>
+        </li>
+
+        <li>
+            <a href="home.html#about">
+                About
+            </a>
+        </li>
+
+        <li>
+            <a href="home.html#contact">
+                Contact
+            </a>
+        </li>
+
+    </ul>
+
+    <a
+        href="../index.html"
+        class="logout-btn"
+    >
+        Logout
+    </a>
+
+</nav>
+
+
+<!-- =========================
+     DESTINATION HERO
+========================= -->
+
+<section class="destination-hero">
+
+    <div>
+
+        <p>
+            Explore Sri Lanka
+        </p>
+
+        <h1>
+            Find Your Perfect Destination
+        </h1>
+
+        <span>
+            Discover beaches, mountains, culture,
+            wildlife and unforgettable experiences.
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FILTER AREA
+========================= -->
+
+<section class="destination-page-section">
+
+    <div class="destination-filter">
+
+        <input
+            type="text"
+            id="destinationFilter"
+            placeholder="Search destination..."
+        >
+
+        <button
+            class="filter-btn active"
+            onclick="filterCategory('all', this)"
+        >
+            All
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterCategory('nature', this)"
+        >
+            Nature
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterCategory('culture', this)"
+        >
+            Culture
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterCategory('beach', this)"
+        >
+            Beach
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         DESTINATION GRID
+    ========================= -->
+
+    <div
+        class="destinations-grid"
+        id="destinationsGrid"
+    >
+
+
+        <!-- ELLA -->
+
+        <div
+            class="travel-destination-card"
+            data-name="ella"
+            data-category="nature"
+        >
+
+            <div class="destination-image">
+
+                <img
+                    src="../images/ella.jpg"
+                    alt="Ella"
+                >
+
+                <span class="destination-tag">
+                    Nature
+                </span>
+
+            </div>
+
+            <div class="travel-card-content">
+
+                <h2>
+                    Ella
+                </h2>
+
+                <p class="location-text">
+                    📍 Badulla District
+                </p>
+
+                <p>
+                    Experience beautiful mountains,
+                    tea plantations, waterfalls and the
+                    famous Nine Arch Bridge.
+                </p>
+
+                <div class="travel-card-bottom">
+
+                    <span>
+                        ⭐ 4.8
+                    </span>
+
+                    <button>
+                        View Details
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SIGIRIYA -->
+
+        <div
+            class="travel-destination-card"
+            data-name="sigiriya"
+            data-category="culture"
+        >
+
+            <div class="destination-image">
+
+                <img
+                    src="../images/sigiriya.jpg"
+                    alt="Sigiriya"
+                >
+
+                <span class="destination-tag">
+                    Culture
+                </span>
+
+            </div>
+
+            <div class="travel-card-content">
+
+                <h2>
+                    Sigiriya
+                </h2>
+
+                <p class="location-text">
+                    📍 Central Sri Lanka
+                </p>
+
+                <p>
+                    Discover the ancient Sigiriya
+                    Rock Fortress and its fascinating
+                    history.
+                </p>
+
+                <div class="travel-card-bottom">
+
+                    <span>
+                        ⭐ 4.9
+                    </span>
+
+                    <button>
+                        View Details
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- KANDY -->
+
+        <div
+            class="travel-destination-card"
+            data-name="kandy"
+            data-category="culture"
+        >
+
+            <div class="destination-image">
+
+                <img
+                    src="../images/kandy.jpg"
+                    alt="Kandy"
+                >
+
+                <span class="destination-tag">
+                    Culture
+                </span>
+
+            </div>
+
+            <div class="travel-card-content">
+
+                <h2>
+                    Kandy
+                </h2>
+
+                <p class="location-text">
+                    📍 Central Province
+                </p>
+
+                <p>
+                    Explore Sri Lankan culture,
+                    Kandy Lake and the city's historic
+                    attractions.
+                </p>
+
+                <div class="travel-card-bottom">
+
+                    <span>
+                        ⭐ 4.7
+                    </span>
+
+                    <button>
+                        View Details
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- NUWARA ELIYA -->
+
+        <div
+            class="travel-destination-card"
+            data-name="nuwara eliya"
+            data-category="nature"
+        >
+
+            <div class="destination-image">
+
+                <img
+                    src="../images/nuwara-eliya.jpg"
+                    alt="Nuwara Eliya"
+                >
+
+                <span class="destination-tag">
+                    Nature
+                </span>
+
+            </div>
+
+            <div class="travel-card-content">
+
+                <h2>
+                    Nuwara Eliya
+                </h2>
+
+                <p class="location-text">
+                    📍 Central Province
+                </p>
+
+                <p>
+                    Enjoy cool weather, green mountains,
+                    waterfalls and beautiful tea estates.
+                </p>
+
+                <div class="travel-card-bottom">
+
+                    <span>
+                        ⭐ 4.8
+                    </span>
+
+                    <button>
+                        View Details
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- GALLE -->
+
+        <div
+            class="travel-destination-card"
+            data-name="galle"
+            data-category="beach"
+        >
+
+            <div class="destination-image">
+
+                <img
+                    src="../images/galle.jpg"
+                    alt="Galle"
+                >
+
+                <span class="destination-tag">
+                    Beach
+                </span>
+
+            </div>
+
+            <div class="travel-card-content">
+
+                <h2>
+                    Galle
+                </h2>
+
+                <p class="location-text">
+                    📍 Southern Province
+                </p>
+
+                <p>
+                    Discover Galle Fort, beautiful coastal
+                    scenery and historic streets.
+                </p>
+
+                <div class="travel-card-bottom">
+
+                    <span>
+                        ⭐ 4.7
+                    </span>
+
+                    <button>
+                        View Details
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MIRISSA -->
+
+        <div
+            class="travel-destination-card"
+            data-name="mirissa"
+            data-category="beach"
+        >
+
+            <div class="destination-image">
+
+                <img
+                    src="../images/mirissa.jpg"
+                    alt="Mirissa"
+                >
+
+                <span class="destination-tag">
+                    Beach
+                </span>
+
+            </div>
+
+            <div class="travel-card-content">
+
+                <h2>
+                    Mirissa
+                </h2>
+
+                <p class="location-text">
+                    📍 Southern Province
+                </p>
+
+                <p>
+                    Relax on tropical beaches and
+                    experience beautiful ocean views.
+                </p>
+
+                <div class="travel-card-bottom">
+
+                    <span>
+                        ⭐ 4.9
+                    </span>
+
+                    <button>
+                        View Details
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <p
+        id="noDestination"
+        class="no-destination"
+    >
+        Destination not found.
+    </p>
+
+</section>
+
+
+<footer>
+
+    <div class="copyright">
+        © 2026 Travel Lanka. All Rights Reserved.
+    </div>
+
+</footer>
+
+
+<script src="../js/destinations.js"></script>
+
+</body>
+
+</html>
