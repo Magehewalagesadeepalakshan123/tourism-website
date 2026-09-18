@@ -1,7 +1,24 @@
+<?php
+
+require_once "../php/auth_check.php";
+
+$loginMessage = "";
+
+if (isset($_SESSION["login_success"])) {
+
+    $loginMessage = $_SESSION["login_success"];
+
+    // Remove message so it only appears once
+    unset($_SESSION["login_success"]);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -15,13 +32,32 @@
         rel="stylesheet"
         href="../css/style.css"
     >
+
 </head>
 
 <body>
 
-<!-- =========================
+<?php if ($loginMessage !== ""): ?>
+
+    <div
+        class="login-success-popup"
+        id="loginSuccessPopup"
+    >
+
+        <span class="popup-check">
+            ✓
+        </span>
+
+        <?php
+        echo htmlspecialchars($loginMessage);
+        ?>
+
+    </div>
+
+<?php endif; ?>
+<!-- =========================================
      NAVBAR
-========================= -->
+========================================= -->
 
 <nav class="navbar">
 
@@ -29,42 +65,67 @@
         Travel Lanka
     </div>
 
+
     <ul class="nav-links">
 
         <li>
-            <a href="home.html">Home</a>
+            <a href="home.php">
+                Home
+            </a>
         </li>
 
         <li>
-    <a href="destinations.html">
-        Destinations
+            <a href="destinations.php">
+                Destinations
+            </a>
+        </li>
+
+        <li>
+            
+    <a href="my-bookings.php">
+        My Bookings
     </a>
 </li>
 
         <li>
-            <a href="#packages">Packages</a>
+            <a href="#packages">
+                Packages
+            </a>
         </li>
 
         <li>
-            <a href="#about">About</a>
+            <a href="#about">
+                About
+            </a>
         </li>
 
         <li>
-            <a href="#contact">Contact</a>
+            <a href="#contact">
+                Contact
+            </a>
         </li>
 
     </ul>
 
-    <a href="../index.html" class="logout-btn">
+
+    <div>
+
+    <a
+        href="../php/logout.php"
+        class="logout-btn"
+    >
         Logout
     </a>
+
+</div>
 
 </nav>
 
 
-<!-- =========================
+
+<!-- =========================================
      HERO SECTION
-========================= -->
+========================================= -->
 
 <section class="hero">
 
@@ -74,15 +135,25 @@
             Explore • Discover • Experience
         </p>
 
+
         <h1>
+
             Discover Beautiful
-            <span>Sri Lanka</span>
+
+            <span>
+                Sri Lanka
+            </span>
+
         </h1>
 
+
         <p>
-            Explore breathtaking beaches, ancient cities,
-            beautiful mountains and unforgettable adventures
-            across Sri Lanka.
+
+            Explore breathtaking beaches,
+            ancient cities, beautiful mountains
+            and unforgettable adventures across
+            Sri Lanka.
+
         </p>
 
 
@@ -107,9 +178,10 @@
 </section>
 
 
-<!-- =========================
-     DESTINATIONS
-========================= -->
+
+<!-- =========================================
+     POPULAR DESTINATIONS
+========================================= -->
 
 <section
     class="section"
@@ -118,15 +190,21 @@
 
     <div class="section-title">
 
-        <p>Explore Sri Lanka</p>
+        <p>
+            Explore Sri Lanka
+        </p>
+
 
         <h2>
             Popular Destinations
         </h2>
 
+
         <span>
-            Discover some of the most beautiful destinations
-            in Sri Lanka.
+
+            Discover some of the most
+            beautiful destinations in Sri Lanka.
+
         </span>
 
     </div>
@@ -135,7 +213,9 @@
     <div class="destination-container">
 
 
-        <!-- ELLA -->
+        <!-- =====================================
+             ELLA
+        ====================================== -->
 
         <div
             class="destination-card"
@@ -147,25 +227,37 @@
                 alt="Ella"
             >
 
+
             <div class="destination-info">
 
-                <h3>Ella</h3>
+                <h3>
+                    Ella
+                </h3>
+
 
                 <p>
-                    Mountains, waterfalls and beautiful
-                    tea plantations.
+
+                    Mountains, waterfalls and
+                    beautiful tea plantations.
+
                 </p>
 
-                <a href="destinations.html">
-    Explore →
-</a>
+
+                <a
+                    href="destination-details.php?destination=ella"
+                >
+                    Explore →
+                </a>
 
             </div>
 
         </div>
 
 
-        <!-- SIGIRIYA -->
+
+        <!-- =====================================
+             SIGIRIYA
+        ====================================== -->
 
         <div
             class="destination-card"
@@ -177,16 +269,25 @@
                 alt="Sigiriya"
             >
 
+
             <div class="destination-info">
 
-                <h3>Sigiriya</h3>
+                <h3>
+                    Sigiriya
+                </h3>
+
 
                 <p>
+
                     Discover the famous ancient
                     Sigiriya Rock Fortress.
+
                 </p>
 
-                <a href="#">
+
+                <a
+                    href="destination-details.php?destination=sigiriya"
+                >
                     Explore →
                 </a>
 
@@ -195,7 +296,10 @@
         </div>
 
 
-        <!-- KANDY -->
+
+        <!-- =====================================
+             KANDY
+        ====================================== -->
 
         <div
             class="destination-card"
@@ -207,16 +311,25 @@
                 alt="Kandy"
             >
 
+
             <div class="destination-info">
 
-                <h3>Kandy</h3>
+                <h3>
+                    Kandy
+                </h3>
+
 
                 <p>
+
                     Experience Sri Lankan culture,
                     history and beautiful scenery.
+
                 </p>
 
-                <a href="#">
+
+                <a
+                    href="destination-details.php?destination=kandy"
+                >
                     Explore →
                 </a>
 
@@ -224,15 +337,15 @@
 
         </div>
 
-
     </div>
 
 </section>
 
 
-<!-- =========================
+
+<!-- =========================================
      TOUR PACKAGES
-========================= -->
+========================================= -->
 
 <section
     class="section packages-section"
@@ -241,7 +354,10 @@
 
     <div class="section-title">
 
-        <p>Travel Packages</p>
+        <p>
+            Travel Packages
+        </p>
+
 
         <h2>
             Recommended Tours
@@ -263,14 +379,20 @@
                     3 Days
                 </span>
 
+
                 <h3>
                     Ella Adventure
                 </h3>
 
+
                 <p>
-                    Explore waterfalls, mountains and
-                    the famous Nine Arch Bridge.
+
+                    Explore waterfalls,
+                    mountains and the famous
+                    Nine Arch Bridge.
+
                 </p>
+
 
                 <div class="package-footer">
 
@@ -278,15 +400,20 @@
                         LKR 25,000
                     </strong>
 
-                    <button>
+
+                    <a
+                        href="destination-details.php?destination=ella"
+                        class="view-details-btn"
+                    >
                         View Package
-                    </button>
+                    </a>
 
                 </div>
 
             </div>
 
         </div>
+
 
 
         <!-- PACKAGE 2 -->
@@ -299,14 +426,19 @@
                     2 Days
                 </span>
 
+
                 <h3>
                     Sigiriya Discovery
                 </h3>
 
+
                 <p>
-                    Visit Sigiriya, Dambulla and beautiful
-                    cultural attractions.
+
+                    Visit Sigiriya, Dambulla
+                    and beautiful cultural attractions.
+
                 </p>
+
 
                 <div class="package-footer">
 
@@ -314,15 +446,20 @@
                         LKR 20,000
                     </strong>
 
-                    <button>
+
+                    <a
+                        href="destination-details.php?destination=sigiriya"
+                        class="view-details-btn"
+                    >
                         View Package
-                    </button>
+                    </a>
 
                 </div>
 
             </div>
 
         </div>
+
 
 
         <!-- PACKAGE 3 -->
@@ -335,14 +472,20 @@
                     4 Days
                 </span>
 
+
                 <h3>
                     Southern Beach Tour
                 </h3>
 
+
                 <p>
-                    Experience Galle, Mirissa and Sri Lanka's
-                    beautiful southern beaches.
+
+                    Experience Galle, Mirissa
+                    and Sri Lanka's beautiful
+                    southern beaches.
+
                 </p>
+
 
                 <div class="package-footer">
 
@@ -350,9 +493,13 @@
                         LKR 35,000
                     </strong>
 
-                    <button>
+
+                    <a
+                        href="destinations.php"
+                        class="view-details-btn"
+                    >
                         View Package
-                    </button>
+                    </a>
 
                 </div>
 
@@ -360,21 +507,24 @@
 
         </div>
 
-
     </div>
 
 </section>
 
 
-<!-- =========================
+
+<!-- =========================================
      WHY CHOOSE US
-========================= -->
+========================================= -->
 
 <section class="section">
 
     <div class="section-title">
 
-        <p>Why Travel Lanka?</p>
+        <p>
+            Why Travel Lanka?
+        </p>
+
 
         <h2>
             Travel With Confidence
@@ -385,22 +535,28 @@
 
     <div class="features-container">
 
+
         <div class="feature">
 
             <div class="feature-icon">
                 🌴
             </div>
 
+
             <h3>
                 Amazing Destinations
             </h3>
 
+
             <p>
-                Discover beautiful locations throughout
-                Sri Lanka.
+
+                Discover beautiful locations
+                throughout Sri Lanka.
+
             </p>
 
         </div>
+
 
 
         <div class="feature">
@@ -409,16 +565,21 @@
                 💰
             </div>
 
+
             <h3>
                 Best Prices
             </h3>
 
+
             <p>
-                Find affordable travel packages suitable
-                for your budget.
+
+                Find affordable travel packages
+                suitable for your budget.
+
             </p>
 
         </div>
+
 
 
         <div class="feature">
@@ -427,16 +588,21 @@
                 🛡️
             </div>
 
+
             <h3>
                 Safe Travel
             </h3>
 
+
             <p>
-                Enjoy reliable and carefully planned
-                travel experiences.
+
+                Enjoy reliable and carefully
+                planned travel experiences.
+
             </p>
 
         </div>
+
 
 
         <div class="feature">
@@ -445,13 +611,17 @@
                 📞
             </div>
 
+
             <h3>
                 Support
             </h3>
 
+
             <p>
-                Get assistance whenever you need help
-                during your journey.
+
+                Get assistance whenever you
+                need help during your journey.
+
             </p>
 
         </div>
@@ -461,9 +631,10 @@
 </section>
 
 
-<!-- =========================
-     ABOUT
-========================= -->
+
+<!-- =========================================
+     ABOUT US
+========================================= -->
 
 <section
     class="about-section"
@@ -476,20 +647,29 @@
             About Us
         </p>
 
+
         <h2>
+
             Your Journey Starts With
             Travel Lanka
+
         </h2>
 
+
         <p>
-            Travel Lanka helps travellers discover amazing
-            destinations throughout Sri Lanka. Our goal is to
-            make travelling easier by providing destinations,
-            tour packages, accommodation information and
-            booking services in one place.
+
+            Travel Lanka helps travellers discover
+            amazing destinations throughout Sri Lanka.
+
+            Our goal is to make travelling easier by
+            providing destinations, tour packages,
+            accommodation information and booking
+            services in one place.
+
         </p>
 
-        <button>
+
+        <button type="button">
             Learn More
         </button>
 
@@ -498,9 +678,10 @@
 </section>
 
 
-<!-- =========================
+
+<!-- =========================================
      NEWSLETTER
-========================= -->
+========================================= -->
 
 <section class="newsletter">
 
@@ -508,10 +689,14 @@
         Get Travel Inspiration
     </h2>
 
+
     <p>
-        Subscribe to receive travel ideas, offers and
-        destination recommendations.
+
+        Subscribe to receive travel ideas,
+        offers and destination recommendations.
+
     </p>
+
 
     <div class="newsletter-form">
 
@@ -520,7 +705,8 @@
             placeholder="Enter your email address"
         >
 
-        <button>
+
+        <button type="button">
             Subscribe
         </button>
 
@@ -529,13 +715,15 @@
 </section>
 
 
-<!-- =========================
+
+<!-- =========================================
      FOOTER
-========================= -->
+========================================= -->
 
 <footer id="contact">
 
     <div class="footer-container">
+
 
         <div>
 
@@ -543,12 +731,16 @@
                 Travel Lanka
             </h2>
 
+
             <p>
-                Discover the beauty of Sri Lanka with
-                unforgettable travel experiences.
+
+                Discover the beauty of Sri Lanka
+                with unforgettable travel experiences.
+
             </p>
 
         </div>
+
 
 
         <div>
@@ -557,12 +749,36 @@
                 Quick Links
             </h3>
 
-            <p>Home</p>
-            <p>Destinations</p>
-            <p>Packages</p>
-            <p>About Us</p>
+
+            <p>
+                <a href="home.php">
+                    Home
+                </a>
+            </p>
+
+
+            <p>
+                <a href="destinations.php">
+                    Destinations
+                </a>
+            </p>
+
+
+            <p>
+                <a href="#packages">
+                    Packages
+                </a>
+            </p>
+
+
+            <p>
+                <a href="#about">
+                    About Us
+                </a>
+            </p>
 
         </div>
+
 
 
         <div>
@@ -571,13 +787,16 @@
                 Contact
             </h3>
 
+
             <p>
                 Email: info@travellanka.com
             </p>
 
+
             <p>
                 Phone: +94 77 123 4567
             </p>
+
 
             <p>
                 Sri Lanka
@@ -598,7 +817,41 @@
 </footer>
 
 
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
 <script src="../js/home.js"></script>
+
+<script src="../js/home.js"></script>
+
+<script>
+
+    const loginPopup =
+        document.getElementById(
+            "loginSuccessPopup"
+        );
+
+    if (loginPopup) {
+
+        setTimeout(function () {
+
+            loginPopup.classList.add("hide");
+
+            setTimeout(function () {
+
+                loginPopup.remove();
+
+            }, 500);
+
+        }, 3000);
+    }
+
+</script>
+
+</body>
+
 
 </body>
 

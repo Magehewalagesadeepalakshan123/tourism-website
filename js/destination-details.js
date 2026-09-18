@@ -1,23 +1,19 @@
+// ============================================
+// DESTINATION DATA
+// ============================================
+
 const destinations = {
 
     ella: {
 
         title: "Ella",
-
         category: "Nature",
-
         location: "Badulla District, Sri Lanka",
-
         province: "Uva Province",
-
         image: "../images/ella.jpg",
-
         rating: "4.8",
-
         bestTime: "January - March",
-
         duration: "3 Days",
-
         price: "LKR 25,000",
 
         description:
@@ -36,21 +32,13 @@ const destinations = {
     sigiriya: {
 
         title: "Sigiriya",
-
         category: "Culture",
-
         location: "Matale District, Sri Lanka",
-
         province: "Central Province",
-
         image: "../images/sigiriya.jpg",
-
         rating: "4.9",
-
         bestTime: "January - April",
-
         duration: "2 Days",
-
         price: "LKR 20,000",
 
         description:
@@ -69,21 +57,13 @@ const destinations = {
     kandy: {
 
         title: "Kandy",
-
         category: "Culture",
-
         location: "Kandy, Sri Lanka",
-
         province: "Central Province",
-
         image: "../images/kandy.jpg",
-
         rating: "4.7",
-
         bestTime: "December - April",
-
         duration: "2 Days",
-
         price: "LKR 22,000",
 
         description:
@@ -102,21 +82,13 @@ const destinations = {
     "nuwara-eliya": {
 
         title: "Nuwara Eliya",
-
         category: "Nature",
-
         location: "Nuwara Eliya, Sri Lanka",
-
         province: "Central Province",
-
         image: "../images/nuwara-eliya.jpg",
-
         rating: "4.8",
-
         bestTime: "February - April",
-
         duration: "3 Days",
-
         price: "LKR 28,000",
 
         description:
@@ -135,21 +107,13 @@ const destinations = {
     galle: {
 
         title: "Galle",
-
         category: "Beach",
-
         location: "Galle, Sri Lanka",
-
         province: "Southern Province",
-
         image: "../images/galle.jpg",
-
         rating: "4.7",
-
         bestTime: "December - April",
-
         duration: "2 Days",
-
         price: "LKR 24,000",
 
         description:
@@ -168,21 +132,13 @@ const destinations = {
     mirissa: {
 
         title: "Mirissa",
-
         category: "Beach",
-
         location: "Matara District, Sri Lanka",
-
         province: "Southern Province",
-
         image: "../images/mirissa.jpg",
-
         rating: "4.9",
-
         bestTime: "November - April",
-
         duration: "3 Days",
-
         price: "LKR 30,000",
 
         description:
@@ -200,186 +156,270 @@ const destinations = {
 };
 
 
-
-/* =====================================
-   GET DESTINATION FROM URL
-===================================== */
+// ============================================
+// GET DESTINATION FROM URL
+// Example:
+// destination-details.php?destination=sigiriya
+// ============================================
 
 const urlParameters =
     new URLSearchParams(
         window.location.search
     );
 
-
 const destinationID =
     urlParameters.get("destination");
-
 
 const destination =
     destinations[destinationID];
 
 
+// ============================================
+// GET HTML ELEMENTS
+// ============================================
 
-/* =====================================
-   DISPLAY DESTINATION
-===================================== */
+const destinationMainImage =
+    document.getElementById(
+        "destinationMainImage"
+    );
+
+const destinationCategory =
+    document.getElementById(
+        "destinationCategory"
+    );
+
+const destinationTitle =
+    document.getElementById(
+        "destinationTitle"
+    );
+
+const destinationHeading =
+    document.getElementById(
+        "destinationHeading"
+    );
+
+const destinationLocation =
+    document.getElementById(
+        "destinationLocation"
+    );
+
+const destinationDescription =
+    document.getElementById(
+        "destinationDescription"
+    );
+
+const destinationRating =
+    document.getElementById(
+        "destinationRating"
+    );
+
+const bestTime =
+    document.getElementById(
+        "bestTime"
+    );
+
+const province =
+    document.getElementById(
+        "province"
+    );
+
+const destinationPrice =
+    document.getElementById(
+        "destinationPrice"
+    );
+
+const bookingDestination =
+    document.getElementById(
+        "bookingDestination"
+    );
+
+const tourDuration =
+    document.getElementById(
+        "tourDuration"
+    );
+
+const bookingRating =
+    document.getElementById(
+        "bookingRating"
+    );
+
+const attractionsList =
+    document.getElementById(
+        "attractionsList"
+    );
+
+
+// ============================================
+// DISPLAY DESTINATION
+// ============================================
 
 if (destination) {
 
-    document.getElementById(
-        "destinationMainImage"
-    ).src =
-        destination.image;
+    if (destinationMainImage) {
+
+        destinationMainImage.src =
+            destination.image;
+
+        destinationMainImage.alt =
+            destination.title;
+    }
 
 
-    document.getElementById(
-        "destinationCategory"
-    ).innerText =
-        destination.category;
+    if (destinationCategory) {
+
+        destinationCategory.innerText =
+            destination.category;
+    }
 
 
-    document.getElementById(
-        "destinationTitle"
-    ).innerText =
-        destination.title;
+    if (destinationTitle) {
+
+        destinationTitle.innerText =
+            destination.title;
+    }
 
 
-    document.getElementById(
-        "destinationHeading"
-    ).innerText =
-        "Discover " +
-        destination.title;
+    if (destinationHeading) {
+
+        destinationHeading.innerText =
+            "Discover " +
+            destination.title;
+    }
 
 
-    document.getElementById(
-        "destinationLocation"
-    ).innerText =
-        "📍 " +
-        destination.location;
+    if (destinationLocation) {
+
+        destinationLocation.innerText =
+            "📍 " +
+            destination.location;
+    }
 
 
-    document.getElementById(
-        "destinationDescription"
-    ).innerText =
-        destination.description;
+    if (destinationDescription) {
+
+        destinationDescription.innerText =
+            destination.description;
+    }
 
 
-    document.getElementById(
-        "destinationRating"
-    ).innerText =
-        destination.rating;
+    if (destinationRating) {
+
+        destinationRating.innerText =
+            destination.rating;
+    }
 
 
-    document.getElementById(
-        "bestTime"
-    ).innerText =
-        destination.bestTime;
+    if (bestTime) {
+
+        bestTime.innerText =
+            destination.bestTime;
+    }
 
 
-    document.getElementById(
-        "province"
-    ).innerText =
-        destination.province;
+    if (province) {
+
+        province.innerText =
+            destination.province;
+    }
 
 
-    document.getElementById(
-        "destinationPrice"
-    ).innerText =
-        destination.price;
+    if (destinationPrice) {
+
+        destinationPrice.innerText =
+            destination.price;
+    }
 
 
-    document.getElementById(
-        "bookingDestination"
-    ).innerText =
-        destination.title;
+    if (bookingDestination) {
+
+        bookingDestination.innerText =
+            destination.title;
+    }
 
 
-    document.getElementById(
-        "tourDuration"
-    ).innerText =
-        destination.duration;
+    if (tourDuration) {
+
+        tourDuration.innerText =
+            destination.duration;
+    }
 
 
-    document.getElementById(
-        "bookingRating"
-    ).innerText =
-        destination.rating + " ⭐";
+    if (bookingRating) {
+
+        bookingRating.innerText =
+            destination.rating +
+            " ⭐";
+    }
 
 
-    /* Attractions */
+    // ========================================
+    // DISPLAY ATTRACTIONS
+    // ========================================
 
-    const attractionsList =
-        document.getElementById(
-            "attractionsList"
-        );
+    if (attractionsList) {
 
+        attractionsList.innerHTML = "";
 
-    destination.attractions.forEach(
-        function(attraction) {
+        destination.attractions.forEach(
+            function (attraction) {
 
-            const item =
-                document.createElement(
-                    "div"
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+                item.className =
+                    "attraction-item";
+
+                item.textContent =
+                    "✓ " +
+                    attraction;
+
+                attractionsList.appendChild(
+                    item
                 );
 
+            }
+        );
 
-            item.className =
-                "attraction-item";
-
-
-            item.innerHTML =
-                "✓ " + attraction;
-
-
-            attractionsList.appendChild(
-                item
-            );
-
-        }
-    );
+    }
 
 }
+
+
+// ============================================
+// DESTINATION NOT FOUND
+// ============================================
+
 else {
 
-    document.querySelector(
-        ".details-section"
-    ).innerHTML = `
+    const detailsSection =
+        document.querySelector(
+            ".details-section"
+        );
 
-        <div class="destination-error">
+    if (detailsSection) {
 
-            <h2>
-                Destination not found
-            </h2>
+        detailsSection.innerHTML = `
 
-            <a href="destinations.html">
-                Back to Destinations
-            </a>
+            <div class="destination-error">
 
-        </div>
+                <h2>
+                    Destination not found
+                </h2>
 
-    `;
+                <a href="destinations.php">
+                    Back to Destinations
+                </a>
 
-}
-const bookNowButton =
-    document.getElementById(
-        "bookNowButton"
-    );
+            </div>
 
+        `;
 
-if (
-    bookNowButton &&
-    destinationID
-) {
-
-    bookNowButton.addEventListener(
-        "click",
-        function() {
-
-            window.location.href =
-                "booking.html?destination=" +
-                destinationID;
-
-        }
-    );
+    }
 
 }
+
+
+
+

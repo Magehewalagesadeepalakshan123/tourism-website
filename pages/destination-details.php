@@ -1,3 +1,10 @@
+<?php
+
+require_once "../php/auth_check.php";
+
+$destinationID = $_GET["destination"] ?? "";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +17,9 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Travel Lanka | Destination Details</title>
+    <title>
+        Travel Lanka | Destination Details
+    </title>
 
     <link
         rel="stylesheet"
@@ -35,31 +44,37 @@
     <ul class="nav-links">
 
         <li>
-            <a href="home.html">
+            <a href="home.php">
                 Home
             </a>
         </li>
 
         <li>
-            <a href="destinations.html">
+            <a href="destinations.php">
                 Destinations
             </a>
         </li>
 
         <li>
-            <a href="home.html#packages">
+            <a href="my-bookings.php">
+                My Bookings
+            </a>
+        </li>
+
+        <li>
+            <a href="home.php#packages">
                 Packages
             </a>
         </li>
 
         <li>
-            <a href="home.html#about">
+            <a href="home.php#about">
                 About
             </a>
         </li>
 
         <li>
-            <a href="home.html#contact">
+            <a href="home.php#contact">
                 Contact
             </a>
         </li>
@@ -67,12 +82,13 @@
     </ul>
 
     <a
-        href="../index.html"
+        href="../php/logout.php"
         class="logout-btn"
     >
         Logout
     </a>
 
+</nav>
 </nav>
 
 
@@ -87,6 +103,7 @@
         src=""
         alt="Destination"
     >
+
 
     <div class="details-hero-overlay">
 
@@ -108,7 +125,7 @@
 
 
 <!-- =========================
-     DETAILS
+     DETAILS SECTION
 ========================= -->
 
 <section class="details-section">
@@ -116,7 +133,7 @@
     <div class="details-main">
 
 
-        <!-- LEFT -->
+        <!-- LEFT SIDE -->
 
         <div class="details-left">
 
@@ -124,9 +141,11 @@
                 Discover
             </span>
 
+
             <h2 id="destinationHeading">
                 About Destination
             </h2>
+
 
             <p
                 id="destinationDescription"
@@ -135,9 +154,12 @@
             </p>
 
 
-            <!-- INFORMATION -->
+            <!-- INFORMATION BOXES -->
 
             <div class="destination-info-boxes">
+
+
+                <!-- RATING -->
 
                 <div class="info-box">
 
@@ -160,6 +182,8 @@
                 </div>
 
 
+                <!-- BEST TIME -->
+
                 <div class="info-box">
 
                     <span>
@@ -180,6 +204,8 @@
 
                 </div>
 
+
+                <!-- PROVINCE -->
 
                 <div class="info-box">
 
@@ -223,7 +249,7 @@
         </div>
 
 
-        <!-- RIGHT -->
+        <!-- RIGHT SIDE -->
 
         <div class="booking-summary">
 
@@ -231,15 +257,19 @@
                 Starting From
             </p>
 
+
             <h2 id="destinationPrice">
                 LKR 25,000
             </h2>
+
 
             <p>
                 Per person
             </p>
 
+
             <hr>
+
 
             <div class="booking-summary-item">
 
@@ -280,16 +310,22 @@
             </div>
 
 
-            <button
-                class="book-now-btn"
-                id="bookNowButton"
-            >
-                Book Now
-            </button>
+            <!-- BOOK NOW -->
 
+           <a
+    href="booking.php?destination=<?php
+        echo urlencode($destinationID);
+    ?>"
+    class="book-now-btn"
+>
+    Book Now
+</a>
+
+
+            <!-- BACK -->
 
             <a
-                href="destinations.html"
+                href="destinations.php"
                 class="back-destination"
             >
                 ← Back to Destinations
@@ -302,16 +338,24 @@
 </section>
 
 
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
     <div class="copyright">
-        © 2026 Travel Lanka. All Rights Reserved.
+
+        © 2026 Travel Lanka.
+        All Rights Reserved.
+
     </div>
 
 </footer>
 
 
-<script src="../js/destination-details.js"></script>
+<script src="../js/destination-details.js?v=101"></script>
+
 
 </body>
 

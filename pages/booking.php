@@ -1,3 +1,21 @@
+<?php
+
+require_once "../php/auth_check.php";
+
+$bookingMessage = "";
+
+if (isset($_SESSION["booking_success"])) {
+
+    $bookingMessage =
+        $_SESSION["booking_success"];
+
+    unset(
+        $_SESSION["booking_success"]
+    );
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,8 +39,31 @@
 
 <body>
 
+<?php if ($bookingMessage !== ""): ?>
 
-<!-- NAVBAR -->
+    <div
+        class="booking-success-popup"
+        id="bookingSuccessPopup"
+    >
+
+        <span>
+            ✓
+        </span>
+
+        <?php
+        echo htmlspecialchars(
+            $bookingMessage
+        );
+        ?>
+
+    </div>
+
+<?php endif; ?>
+
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
 
 <nav class="navbar">
 
@@ -30,51 +71,78 @@
         Travel Lanka
     </div>
 
+
     <ul class="nav-links">
 
         <li>
-            <a href="home.html">
+            <a href="home.php">
                 Home
             </a>
         </li>
 
         <li>
-            <a href="destinations.html">
+            <a href="destinations.php">
                 Destinations
             </a>
         </li>
 
         <li>
-            <a href="home.html#packages">
+    <a href="my-bookings.php">
+        My Bookings
+    </a>
+</li>
+
+        <li>
+            <a href="home.php#packages">
                 Packages
             </a>
         </li>
 
         <li>
-            <a href="home.html#about">
+            <a href="home.php#about">
                 About
             </a>
         </li>
 
         <li>
-            <a href="home.html#contact">
+            <a href="home.php#contact">
                 Contact
             </a>
         </li>
 
     </ul>
 
+
+    <div>
+
+        <div>
+
     <a
-        href="../index.html"
+        href="../php/logout.php"
         class="logout-btn"
     >
         Logout
     </a>
 
+</div>
+
+
+        <a
+            href="../php/logout.php"
+            class="logout-btn"
+        >
+            Logout
+        </a>
+
+    </div>
+
 </nav>
 
 
-<!-- BOOKING HEADER -->
+
+<!-- =========================================
+     BOOKING HEADER
+========================================= -->
 
 <section class="booking-header">
 
@@ -98,30 +166,41 @@
 </section>
 
 
-<!-- BOOKING -->
+
+<!-- =========================================
+     BOOKING SECTION
+========================================= -->
 
 <section class="booking-page">
 
     <div class="booking-layout">
 
 
-        <!-- FORM -->
+        <!-- =====================================
+             BOOKING FORM
+        ====================================== -->
 
         <form
-            class="booking-form"
-            id="bookingForm"
-        >
+    class="booking-form"
+    id="bookingForm"
+    action="../php/booking_process.php"
+    method="POST"
+>
 
             <h2>
                 Traveller Information
             </h2>
 
             <p class="booking-form-subtitle">
-                Enter your details to continue with your booking.
+
+                Enter your details to continue
+                with your booking.
+
             </p>
 
 
-            <!-- NAME -->
+
+            <!-- FULL NAME -->
 
             <div class="booking-input-group">
 
@@ -132,11 +211,17 @@
                 <input
                     type="text"
                     id="customerName"
-                    placeholder="Enter your full name"
+                    name="customer_name"
+                    value="<?php
+                        echo htmlspecialchars(
+                            $_SESSION["user_name"]
+                        );
+                    ?>"
                     required
                 >
 
             </div>
+
 
 
             <!-- EMAIL -->
@@ -150,11 +235,17 @@
                 <input
                     type="email"
                     id="customerEmail"
-                    placeholder="Enter your email"
+                    name="customer_email"
+                    value="<?php
+                        echo htmlspecialchars(
+                            $_SESSION["user_email"]
+                        );
+                    ?>"
                     required
                 >
 
             </div>
+
 
 
             <!-- PHONE -->
@@ -168,11 +259,13 @@
                 <input
                     type="tel"
                     id="customerPhone"
+                    name="customer_phone"
                     placeholder="+94 77 123 4567"
                     required
                 >
 
             </div>
+
 
 
             <!-- DESTINATION -->
@@ -186,13 +279,15 @@
                 <input
                     type="text"
                     id="bookingDestinationInput"
+                    name="destination"
                     readonly
                 >
 
             </div>
 
 
-            <!-- DATE -->
+
+            <!-- TRAVEL DATE -->
 
             <div class="booking-input-group">
 
@@ -203,13 +298,15 @@
                 <input
                     type="date"
                     id="travelDate"
+                    name="travel_date"
                     required
                 >
 
             </div>
 
 
-            <!-- TRAVELLERS -->
+
+            <!-- NUMBER OF TRAVELLERS -->
 
             <div class="booking-input-group">
 
@@ -220,6 +317,7 @@
                 <input
                     type="number"
                     id="travellers"
+                    name="travellers"
                     min="1"
                     value="1"
                     required
@@ -228,7 +326,8 @@
             </div>
 
 
-            <!-- NOTES -->
+
+            <!-- SPECIAL REQUESTS -->
 
             <div class="booking-input-group">
 
@@ -238,12 +337,16 @@
 
                 <textarea
                     id="specialRequests"
+                    name="special_requests"
                     rows="4"
                     placeholder="Optional requests..."
                 ></textarea>
 
             </div>
 
+
+
+            <!-- CONFIRM BUTTON -->
 
             <button
                 type="submit"
@@ -258,7 +361,10 @@
         </form>
 
 
-        <!-- SUMMARY -->
+
+        <!-- =====================================
+             BOOKING SUMMARY
+        ====================================== -->
 
         <div class="booking-price-card">
 
@@ -323,7 +429,7 @@
 
 
             <a
-                href="destinations.html"
+                href="destinations.php"
                 class="back-destination"
             >
                 ← Back to Destinations
@@ -336,7 +442,34 @@
 </section>
 
 
+
 <script src="../js/booking.js"></script>
+
+
+<script>
+
+const bookingPopup =
+    document.getElementById(
+        "bookingSuccessPopup"
+    );
+
+if (bookingPopup) {
+
+    setTimeout(function () {
+
+        bookingPopup.classList.add("hide");
+
+        setTimeout(function () {
+
+            bookingPopup.remove();
+
+        }, 500);
+
+    }, 3000);
+}
+
+</script>
+
 
 </body>
 

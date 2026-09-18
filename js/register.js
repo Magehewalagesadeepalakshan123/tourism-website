@@ -1,89 +1,97 @@
-const registerForm =
-    document.getElementById("registerForm");
+// ======================================================
+// LOGIN FORM
+// ======================================================
 
-registerForm.addEventListener(
+const loginForm =
+    document.getElementById("loginForm");
+
+const message =
+    document.getElementById("message");
+
+
+// ======================================================
+// CHECK IF USER JUST REGISTERED
+// ======================================================
+
+const urlParameters =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+if (
+    urlParameters.get("registered") === "1"
+) {
+
+    message.style.color = "green";
+
+    message.innerText =
+        "Account created successfully. Please login.";
+
+}
+
+
+// ======================================================
+// LOGIN FORM SUBMIT
+// ======================================================
+
+loginForm.addEventListener(
     "submit",
     function(event) {
 
         event.preventDefault();
 
 
-        const fullName =
-            document.getElementById("fullName").value.trim();
-
         const email =
-            document.getElementById("registerEmail").value.trim();
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
 
         const password =
-            document.getElementById("registerPassword").value;
-
-        const confirmPassword =
-            document.getElementById("confirmPassword").value;
-
-        const message =
-            document.getElementById("registerMessage");
+            document
+                .getElementById("password")
+                .value;
 
 
         // Check empty fields
 
         if (
-            fullName === "" ||
             email === "" ||
-            password === "" ||
-            confirmPassword === ""
+            password === ""
         ) {
 
-            message.style.color = "red";
+            message.style.color =
+                "red";
 
             message.innerText =
-                "Please complete all fields.";
+                "Please enter your email and password.";
 
             return;
         }
 
 
-        // Password length check
+        // Temporary login success
+        // We will replace this with PHP/MySQL login next
 
-        if (password.length < 6) {
+        message.style.color =
+            "green";
 
-            message.style.color = "red";
-
-            message.innerText =
-                "Password must contain at least 6 characters.";
-
-            return;
-        }
-
-
-        // Password match check
-
-        if (password !== confirmPassword) {
-
-            message.style.color = "red";
-
-            message.innerText =
-                "Passwords do not match.";
-
-            return;
-        }
-
-
-        // Successful registration
-
-        message.style.color = "green";
 
         message.innerText =
-            "Account created successfully!";
+            "Login successful!";
 
 
-        // Redirect to login page after 1 second
+        setTimeout(
+            function() {
 
-        setTimeout(function() {
+                window.location.href =
+                    "pages/home.php";
 
-            window.location.href =
-                "../index.html";
-
-        }, 1000);
+            },
+            800
+        );
 
     }
 );

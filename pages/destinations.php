@@ -1,7 +1,14 @@
+<?php
+
+require_once "../php/auth_check.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -15,6 +22,7 @@
         rel="stylesheet"
         href="../css/style.css"
     >
+
 </head>
 
 <body>
@@ -30,46 +38,67 @@
         Travel Lanka
     </div>
 
+
     <ul class="nav-links">
 
         <li>
-            <a href="home.html">
+            <a href="home.php">
                 Home
             </a>
         </li>
 
         <li>
-            <a href="destinations.html">
+            <a href="destinations.php">
                 Destinations
             </a>
         </li>
 
+
+<li>
+    <a href="my-bookings.php">
+        My Bookings
+    </a>
+</li>
+
+
+
         <li>
-            <a href="home.html#packages">
+            <a href="home.php#packages">
                 Packages
             </a>
         </li>
 
         <li>
-            <a href="home.html#about">
+            <a href="home.php#about">
                 About
             </a>
         </li>
 
         <li>
-            <a href="home.html#contact">
+            <a href="home.php#contact">
                 Contact
             </a>
         </li>
 
     </ul>
 
+
+    <div>
+
+        <div>
+
     <a
-        href="../index.html"
+        href="../php/logout.php"
         class="logout-btn"
     >
         Logout
     </a>
+
+</div>
+
+        
+
+    </div>
 
 </nav>
 
@@ -114,12 +143,14 @@
             placeholder="Search destination..."
         >
 
+
         <button
             class="filter-btn active"
             onclick="filterCategory('all', this)"
         >
             All
         </button>
+
 
         <button
             class="filter-btn"
@@ -128,12 +159,14 @@
             Nature
         </button>
 
+
         <button
             class="filter-btn"
             onclick="filterCategory('culture', this)"
         >
             Culture
         </button>
+
 
         <button
             class="filter-btn"
@@ -176,6 +209,7 @@
 
             </div>
 
+
             <div class="travel-card-content">
 
                 <h2>
@@ -192,6 +226,7 @@
                     famous Nine Arch Bridge.
                 </p>
 
+
                 <div class="travel-card-bottom">
 
                     <span>
@@ -199,11 +234,11 @@
                     </span>
 
                     <a
-    href="destination-details.html?destination=ella"
-    class="view-details-btn"
->
-    View Details
-</a>
+                        href="destination-details.php?destination=ella"
+                        class="view-details-btn"
+                    >
+                        View Details
+                    </a>
 
                 </div>
 
@@ -233,6 +268,7 @@
 
             </div>
 
+
             <div class="travel-card-content">
 
                 <h2>
@@ -249,18 +285,19 @@
                     history.
                 </p>
 
+
                 <div class="travel-card-bottom">
 
                     <span>
                         ⭐ 4.9
                     </span>
 
-                   <a
-    href="destination-details.html?destination=sigiriya"
-    class="view-details-btn"
->
-    View Details
-</a>
+                    <a
+                        href="destination-details.php?destination=sigiriya"
+                        class="view-details-btn"
+                    >
+                        View Details
+                    </a>
 
                 </div>
 
@@ -290,6 +327,7 @@
 
             </div>
 
+
             <div class="travel-card-content">
 
                 <h2>
@@ -306,6 +344,7 @@
                     attractions.
                 </p>
 
+
                 <div class="travel-card-bottom">
 
                     <span>
@@ -313,11 +352,11 @@
                     </span>
 
                     <a
-    href="destination-details.html?destination=kandy"
-    class="view-details-btn"
->
-    View Details
-</a>
+                        href="destination-details.php?destination=kandy"
+                        class="view-details-btn"
+                    >
+                        View Details
+                    </a>
 
                 </div>
 
@@ -347,6 +386,7 @@
 
             </div>
 
+
             <div class="travel-card-content">
 
                 <h2>
@@ -362,6 +402,7 @@
                     waterfalls and beautiful tea estates.
                 </p>
 
+
                 <div class="travel-card-bottom">
 
                     <span>
@@ -369,11 +410,11 @@
                     </span>
 
                     <a
-    href="destination-details.html?destination=nuwara-eliya"
-    class="view-details-btn"
->
-    View Details
-</a>
+                        href="destination-details.php?destination=nuwara-eliya"
+                        class="view-details-btn"
+                    >
+                        View Details
+                    </a>
 
                 </div>
 
@@ -403,6 +444,7 @@
 
             </div>
 
+
             <div class="travel-card-content">
 
                 <h2>
@@ -418,18 +460,19 @@
                     scenery and historic streets.
                 </p>
 
+
                 <div class="travel-card-bottom">
 
                     <span>
                         ⭐ 4.7
                     </span>
 
-                   <a
-    href="destination-details.html?destination=galle"
-    class="view-details-btn"
->
-    View Details
-</a>
+                    <a
+                        href="destination-details.php?destination=galle"
+                        class="view-details-btn"
+                    >
+                        View Details
+                    </a>
 
                 </div>
 
@@ -459,6 +502,7 @@
 
             </div>
 
+
             <div class="travel-card-content">
 
                 <h2>
@@ -474,18 +518,19 @@
                     experience beautiful ocean views.
                 </p>
 
+
                 <div class="travel-card-bottom">
 
                     <span>
                         ⭐ 4.9
                     </span>
 
-                   <a
-    href="destination-details.html?destination=mirissa"
-    class="view-details-btn"
->
-    View Details
-</a>
+                    <a
+                        href="destination-details.php?destination=mirissa"
+                        class="view-details-btn"
+                    >
+                        View Details
+                    </a>
 
                 </div>
 
@@ -506,16 +551,24 @@
 </section>
 
 
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
     <div class="copyright">
-        © 2026 Travel Lanka. All Rights Reserved.
+
+        © 2026 Travel Lanka.
+        All Rights Reserved.
+
     </div>
 
 </footer>
 
 
 <script src="../js/destinations.js"></script>
+
 
 </body>
 
