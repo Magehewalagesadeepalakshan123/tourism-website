@@ -65,7 +65,6 @@ if (isset($_SESSION["login_success"])) {
         Travel Lanka
     </div>
 
-
     <ul class="nav-links">
 
         <li>
@@ -81,34 +80,30 @@ if (isset($_SESSION["login_success"])) {
         </li>
 
         <li>
-            
-    <a href="my-bookings.php">
-        My Bookings
-    </a>
-</li>
+            <a href="my-bookings.php">
+                My Bookings
+            </a>
+        </li>
 
         <li>
-            <a href="#packages">
+            <a href="home.php#packages">
                 Packages
             </a>
         </li>
 
         <li>
-            <a href="#about">
+            <a href="home.php#about">
                 About
             </a>
         </li>
 
         <li>
-            <a href="#contact">
+            <a href="home.php#contact">
                 Contact
             </a>
         </li>
 
     </ul>
-
-
-    <div>
 
     <a
         href="../php/logout.php"
@@ -116,8 +111,6 @@ if (isset($_SESSION["login_success"])) {
     >
         Logout
     </a>
-
-</div>
 
 </nav>
 

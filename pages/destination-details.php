@@ -89,7 +89,6 @@ $destinationID = $_GET["destination"] ?? "";
     </a>
 
 </nav>
-</nav>
 
 
 <!-- =========================

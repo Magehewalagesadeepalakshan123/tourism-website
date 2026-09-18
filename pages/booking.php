@@ -71,7 +71,6 @@ if (isset($_SESSION["booking_success"])) {
         Travel Lanka
     </div>
 
-
     <ul class="nav-links">
 
         <li>
@@ -87,10 +86,10 @@ if (isset($_SESSION["booking_success"])) {
         </li>
 
         <li>
-    <a href="my-bookings.php">
-        My Bookings
-    </a>
-</li>
+            <a href="my-bookings.php">
+                My Bookings
+            </a>
+        </li>
 
         <li>
             <a href="home.php#packages">
@@ -112,29 +111,12 @@ if (isset($_SESSION["booking_success"])) {
 
     </ul>
 
-
-    <div>
-
-        <div>
-
     <a
         href="../php/logout.php"
         class="logout-btn"
     >
         Logout
     </a>
-
-</div>
-
-
-        <a
-            href="../php/logout.php"
-            class="logout-btn"
-        >
-            Logout
-        </a>
-
-    </div>
 
 </nav>
 

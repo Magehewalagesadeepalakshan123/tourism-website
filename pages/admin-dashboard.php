@@ -4,10 +4,13 @@ require_once "../php/admin_auth.php";
 require_once "../php/db.php";
 
 
+// ==========================================
 // TOTAL USERS
+// ==========================================
 
 $userStmt = $pdo->query(
-    "SELECT COUNT(*) FROM users
+    "SELECT COUNT(*)
+     FROM users
      WHERE role = 'user'"
 );
 
@@ -15,20 +18,26 @@ $totalUsers =
     $userStmt->fetchColumn();
 
 
+// ==========================================
 // TOTAL BOOKINGS
+// ==========================================
 
 $bookingStmt = $pdo->query(
-    "SELECT COUNT(*) FROM bookings"
+    "SELECT COUNT(*)
+     FROM bookings"
 );
 
 $totalBookings =
     $bookingStmt->fetchColumn();
 
 
+// ==========================================
 // PENDING BOOKINGS
+// ==========================================
 
 $pendingStmt = $pdo->query(
-    "SELECT COUNT(*) FROM bookings
+    "SELECT COUNT(*)
+     FROM bookings
      WHERE status = 'Pending'"
 );
 
@@ -36,15 +45,74 @@ $pendingBookings =
     $pendingStmt->fetchColumn();
 
 
+// ==========================================
 // APPROVED BOOKINGS
+// ==========================================
 
 $approvedStmt = $pdo->query(
-    "SELECT COUNT(*) FROM bookings
+    "SELECT COUNT(*)
+     FROM bookings
      WHERE status = 'Approved'"
 );
 
 $approvedBookings =
     $approvedStmt->fetchColumn();
+
+
+// ==========================================
+// COMPLETED BOOKINGS
+// ==========================================
+
+$completedStmt = $pdo->query(
+    "SELECT COUNT(*)
+     FROM bookings
+     WHERE status = 'Completed'"
+);
+
+$completedBookings =
+    $completedStmt->fetchColumn();
+
+
+// ==========================================
+// DECLINED BOOKINGS
+// ==========================================
+
+$declinedStmt = $pdo->query(
+    "SELECT COUNT(*)
+     FROM bookings
+     WHERE status = 'Declined'"
+);
+
+$declinedBookings =
+    $declinedStmt->fetchColumn();
+
+
+// ==========================================
+// CANCELLED BOOKINGS
+// ==========================================
+
+$cancelledStmt = $pdo->query(
+    "SELECT COUNT(*)
+     FROM bookings
+     WHERE status = 'Cancelled'"
+);
+
+$cancelledBookings =
+    $cancelledStmt->fetchColumn();
+
+
+// ==========================================
+// TOTAL REVENUE
+// ==========================================
+
+$revenueStmt = $pdo->query(
+    "SELECT COALESCE(SUM(amount), 0)
+     FROM payments
+     WHERE payment_status = 'Paid'"
+);
+
+$totalRevenue =
+    $revenueStmt->fetchColumn();
 
 ?>
 
@@ -66,7 +134,7 @@ $approvedBookings =
 
     <link
         rel="stylesheet"
-        href="../css/style.css?v=200"
+        href="../css/style.css?v=300"
     >
 
 </head>
@@ -74,14 +142,15 @@ $approvedBookings =
 <body>
 
 
-<!-- ADMIN NAVBAR -->
+<!-- =========================================
+     ADMIN NAVBAR
+========================================= -->
 
 <nav class="navbar">
 
     <div class="logo">
         Travel Lanka Admin
     </div>
-
 
     <ul class="nav-links">
 
@@ -103,8 +172,13 @@ $approvedBookings =
             </a>
         </li>
 
-    </ul>
+        <li>
+            <a href="admin-payments.php">
+                Payments
+            </a>
+        </li>
 
+    </ul>
 
     <a
         href="../php/logout.php"
@@ -116,7 +190,9 @@ $approvedBookings =
 </nav>
 
 
-<!-- HEADER -->
+<!-- =========================================
+     HEADER
+========================================= -->
 
 <section class="booking-header">
 
@@ -139,14 +215,17 @@ $approvedBookings =
 </section>
 
 
-<!-- DASHBOARD -->
+
+<!-- =========================================
+     DASHBOARD STATISTICS
+========================================= -->
 
 <section class="admin-dashboard-section">
 
     <div class="admin-dashboard-container">
 
 
-        <!-- USERS -->
+        <!-- REGISTERED USERS -->
 
         <div class="admin-stat-card">
 
@@ -169,7 +248,8 @@ $approvedBookings =
         </div>
 
 
-        <!-- BOOKINGS -->
+
+        <!-- TOTAL BOOKINGS -->
 
         <div class="admin-stat-card">
 
@@ -190,6 +270,7 @@ $approvedBookings =
             </div>
 
         </div>
+
 
 
         <!-- PENDING -->
@@ -215,6 +296,7 @@ $approvedBookings =
         </div>
 
 
+
         <!-- APPROVED -->
 
         <div class="admin-stat-card">
@@ -237,12 +319,124 @@ $approvedBookings =
 
         </div>
 
+
+
+        <!-- COMPLETED -->
+
+        <div class="admin-stat-card">
+
+            <span>
+                ✅
+            </span>
+
+            <div>
+
+                <small>
+                    Completed Bookings
+                </small>
+
+                <h2>
+                    <?php echo $completedBookings; ?>
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DECLINED -->
+
+        <div class="admin-stat-card">
+
+            <span>
+                ❌
+            </span>
+
+            <div>
+
+                <small>
+                    Declined Bookings
+                </small>
+
+                <h2>
+                    <?php echo $declinedBookings; ?>
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CANCELLED -->
+
+        <div class="admin-stat-card">
+
+            <span>
+                🚫
+            </span>
+
+            <div>
+
+                <small>
+                    Cancelled Bookings
+                </small>
+
+                <h2>
+                    <?php echo $cancelledBookings; ?>
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TOTAL REVENUE -->
+
+        <div class="admin-stat-card">
+
+            <span>
+                💰
+            </span>
+
+            <div>
+
+                <small>
+                    Total Revenue
+                </small>
+
+                <h2>
+
+                    LKR
+
+                    <?php
+                    echo number_format(
+                        $totalRevenue,
+                        2
+                    );
+                    ?>
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
     </div>
 
 
-    <!-- ADMIN ACTIONS -->
+
+    <!-- =====================================
+         ADMIN ACTIONS
+    ====================================== -->
 
     <div class="admin-actions">
+
+
+        <!-- MANAGE BOOKINGS -->
 
         <a
             href="admin-bookings.php"
@@ -260,6 +454,9 @@ $approvedBookings =
         </a>
 
 
+
+        <!-- MANAGE USERS -->
+
         <a
             href="admin-users.php"
             class="admin-action-card"
@@ -274,6 +471,26 @@ $approvedBookings =
             </p>
 
         </a>
+
+
+
+        <!-- VIEW PAYMENTS -->
+
+        <a
+            href="admin-payments.php"
+            class="admin-action-card"
+        >
+
+            <h3>
+                View Payments
+            </h3>
+
+            <p>
+                View customer payments and completed transactions.
+            </p>
+
+        </a>
+
 
     </div>
 

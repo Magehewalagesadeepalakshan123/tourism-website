@@ -53,14 +53,26 @@ $bookings =
     <ul class="nav-links">
 
         <li>
-            <a href="home.php">
-                Home
+            <a href="admin-dashboard.php">
+                Dashboard
             </a>
         </li>
 
         <li>
             <a href="admin-bookings.php">
-                Manage Bookings
+                Bookings
+            </a>
+        </li>
+
+        <li>
+            <a href="admin-users.php">
+                Users
+            </a>
+        </li>
+
+        <li>
+            <a href="admin-payments.php">
+                Payments
             </a>
         </li>
 
@@ -74,7 +86,6 @@ $bookings =
     </a>
 
 </nav>
-
 
 <section class="booking-header">
 

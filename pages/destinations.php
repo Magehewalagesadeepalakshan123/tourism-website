@@ -38,7 +38,6 @@ require_once "../php/auth_check.php";
         Travel Lanka
     </div>
 
-
     <ul class="nav-links">
 
         <li>
@@ -53,14 +52,11 @@ require_once "../php/auth_check.php";
             </a>
         </li>
 
-
-<li>
-    <a href="my-bookings.php">
-        My Bookings
-    </a>
-</li>
-
-
+        <li>
+            <a href="my-bookings.php">
+                My Bookings
+            </a>
+        </li>
 
         <li>
             <a href="home.php#packages">
@@ -82,11 +78,6 @@ require_once "../php/auth_check.php";
 
     </ul>
 
-
-    <div>
-
-        <div>
-
     <a
         href="../php/logout.php"
         class="logout-btn"
@@ -94,14 +85,7 @@ require_once "../php/auth_check.php";
         Logout
     </a>
 
-</div>
-
-        
-
-    </div>
-
 </nav>
-
 
 <!-- =========================
      DESTINATION HERO

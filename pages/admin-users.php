@@ -69,6 +69,12 @@ $users =
             </a>
         </li>
 
+        <li>
+            <a href="admin-payments.php">
+                Payments
+            </a>
+        </li>
+
     </ul>
 
     <a
@@ -79,7 +85,6 @@ $users =
     </a>
 
 </nav>
-
 
 <section class="admin-users-section">
 

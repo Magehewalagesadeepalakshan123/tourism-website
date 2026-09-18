@@ -2936,3 +2936,729 @@ body {
     }
 
 }
+
+
+/* =========================================
+   CANCEL BOOKING
+========================================= */
+
+.cancel-booking-form {
+    margin-top: 20px;
+}
+
+
+.cancel-booking-btn {
+    background: #dc3545;
+
+    color: white;
+
+    border: none;
+
+    padding: 11px 20px;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.cancel-booking-btn:hover {
+    background: #b52a37;
+}
+
+
+.booking-cancelled-text {
+    margin-top: 20px;
+
+    color: #dc3545;
+
+    font-weight: 600;
+}
+
+
+/* CANCELLED STATUS */
+
+.status-cancelled {
+    background: #eeeeee !important;
+
+    color: #666666 !important;
+}
+
+
+
+
+/* =========================================
+   PAYMENT PAGE
+========================================= */
+
+.payment-btn {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 12px 22px;
+
+    background: #16967f;
+    color: white;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.payment-btn:hover {
+    background: #11725f;
+}
+
+
+.payment-completed-text {
+    margin-top: 20px;
+
+    color: #16846f;
+
+    font-weight: 700;
+}
+
+
+.payment-section {
+    min-height: 650px;
+
+    padding: 70px 20px;
+
+    background: #f4f8f7;
+}
+
+
+.payment-card {
+    max-width: 650px;
+
+    margin: auto;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 35px
+        rgba(0, 0, 0, 0.1);
+}
+
+
+.payment-card h1 {
+    margin-bottom: 30px;
+
+    color: #153f3a;
+}
+
+
+.payment-summary p {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin: 15px 0;
+}
+
+
+.payment-total {
+    font-size: 20px;
+}
+
+
+.payment-total strong {
+    color: #16967f;
+}
+
+
+.payment-card select {
+    width: 100%;
+
+    padding: 13px;
+
+    margin:
+        10px 0 20px;
+
+    border:
+        1px solid #dddddd;
+
+    border-radius: 8px;
+}
+
+
+.pay-now-btn {
+    width: 100%;
+
+    padding: 14px;
+
+    background: #16967f;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.pay-now-btn:hover {
+    background: #11725f;
+}
+
+
+.demo-payment-note {
+    margin-top: 20px;
+
+    padding: 12px;
+
+    background: #fff6d9;
+
+    border-radius: 8px;
+
+    color: #725b14;
+
+    font-size: 13px;
+}
+
+
+
+
+/* =========================================
+   ADMIN PAYMENTS
+========================================= */
+
+.admin-payments-section {
+    padding: 60px 8%;
+    background: #f4f8f7;
+    min-height: 600px;
+}
+
+.admin-payments-container {
+    max-width: 1300px;
+    margin: auto;
+}
+
+
+/* TOTAL */
+
+.payment-total-card {
+    background: white;
+
+    padding: 25px 30px;
+
+    border-radius: 15px;
+
+    margin-bottom: 30px;
+
+    border-left:
+        5px solid #16967f;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.08);
+}
+
+.payment-total-card small {
+    color: #777;
+}
+
+.payment-total-card h2 {
+    margin: 8px 0 0;
+
+    color: #16967f;
+
+    font-size: 32px;
+}
+
+
+/* TABLE */
+
+.admin-payment-table-wrapper {
+    overflow-x: auto;
+
+    background: white;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.08);
+}
+
+.admin-payment-table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.admin-payment-table th,
+.admin-payment-table td {
+    padding: 16px;
+
+    text-align: left;
+
+    border-bottom:
+        1px solid #eeeeee;
+}
+
+.admin-payment-table th {
+    background: #16967f;
+
+    color: white;
+}
+
+.admin-payment-table tbody tr:hover {
+    background: #f7faf9;
+}
+
+.admin-payment-table td small {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #888;
+}
+
+
+/* PAID STATUS */
+
+.admin-paid-status {
+    display: inline-block;
+
+    background: #d4edda;
+
+    color: #155724;
+
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+/* NO PAYMENTS */
+
+.no-payments {
+    background: white;
+
+    padding: 50px;
+
+    text-align: center;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.08);
+}
+
+
+
+
+
+
+/* =========================================================
+   FINAL RESPONSIVE DESIGN
+   ========================================================= */
+
+
+/* =========================================================
+   TABLET - 992px AND BELOW
+   ========================================================= */
+
+@media screen and (max-width: 992px) {
+
+    /* NAVBAR */
+
+    .navbar {
+        padding: 15px 5%;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .logout-btn {
+        padding: 9px 16px;
+        font-size: 14px;
+    }
+
+
+    /* HEADER */
+
+    .booking-header {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .booking-header h1 {
+        font-size: 36px;
+    }
+
+
+    /* ADMIN DASHBOARD */
+
+    .admin-dashboard-section {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .admin-dashboard-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .admin-actions {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    /* MY BOOKINGS */
+
+    .my-bookings-section {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+
+    /* TABLES */
+
+    .admin-payment-table-wrapper {
+        overflow-x: auto;
+    }
+
+    .admin-payment-table {
+        min-width: 950px;
+    }
+
+}
+
+
+
+/* =========================================================
+   MOBILE - 768px AND BELOW
+   ========================================================= */
+
+@media screen and (max-width: 768px) {
+
+    /* =====================================================
+       NAVBAR
+    ===================================================== */
+
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+
+        padding: 16px 20px;
+    }
+
+    .logo {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 8px 14px;
+
+        padding: 0;
+        margin: 0 0 12px;
+    }
+
+    .nav-links li {
+        list-style: none;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .logout-btn {
+        width: 100%;
+
+        text-align: center;
+
+        box-sizing: border-box;
+    }
+
+
+    /* =====================================================
+       PAGE HEADER
+    ===================================================== */
+
+    .booking-header {
+        padding: 45px 20px;
+    }
+
+    .booking-header h1 {
+        font-size: 30px;
+    }
+
+    .booking-header p {
+        font-size: 14px;
+    }
+
+    .booking-header span {
+        font-size: 14px;
+    }
+
+
+    /* =====================================================
+       ADMIN DASHBOARD
+    ===================================================== */
+
+    .admin-dashboard-section {
+        padding: 35px 20px;
+    }
+
+    .admin-dashboard-container {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .admin-stat-card {
+        width: 100%;
+
+        box-sizing: border-box;
+    }
+
+    .admin-stat-card h2 {
+        font-size: 26px;
+    }
+
+
+    /* ADMIN ACTIONS */
+
+    .admin-actions {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+
+        margin-top: 30px;
+    }
+
+    .admin-action-card {
+        width: 100%;
+
+        box-sizing: border-box;
+    }
+
+
+    /* =====================================================
+       MY BOOKINGS
+    ===================================================== */
+
+    .my-bookings-section {
+        padding: 35px 20px;
+    }
+
+    .my-booking-card {
+        padding: 22px 18px;
+    }
+
+    .booking-card-top {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+    .booking-card-top h2 {
+        font-size: 23px;
+    }
+
+    .booking-information {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-created {
+        text-align: left;
+    }
+
+
+    /* BUTTONS */
+
+    .cancel-booking-btn,
+    .payment-btn {
+        width: 100%;
+
+        text-align: center;
+
+        box-sizing: border-box;
+    }
+
+
+    /* =====================================================
+       ADMIN PAYMENT TABLE
+    ===================================================== */
+
+    .admin-payments-section {
+        padding: 35px 20px;
+    }
+
+    .payment-total-card {
+        padding: 20px;
+    }
+
+    .payment-total-card h2 {
+        font-size: 25px;
+    }
+
+    .admin-payment-table-wrapper {
+        width: 100%;
+
+        overflow-x: auto;
+    }
+
+    .admin-payment-table {
+        min-width: 900px;
+    }
+
+
+    /* =====================================================
+       FORMS
+    ===================================================== */
+
+    input,
+    select,
+    textarea,
+    button {
+        max-width: 100%;
+
+        box-sizing: border-box;
+    }
+
+}
+
+
+
+/* =========================================================
+   SMALL MOBILE - 480px AND BELOW
+   ========================================================= */
+
+@media screen and (max-width: 480px) {
+
+    /* NAV */
+
+    .navbar {
+        padding: 14px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .nav-links {
+        gap: 7px 10px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+
+    /* HEADER */
+
+    .booking-header {
+        padding: 35px 15px;
+    }
+
+    .booking-header h1 {
+        font-size: 26px;
+    }
+
+
+    /* BOOKING */
+
+    .my-bookings-section {
+        padding: 25px 14px;
+    }
+
+    .my-booking-card {
+        padding: 18px 15px;
+
+        border-radius: 12px;
+    }
+
+    .booking-card-top h2 {
+        font-size: 21px;
+    }
+
+    .booking-information > div {
+        padding: 14px;
+    }
+
+
+    /* ADMIN */
+
+    .admin-dashboard-section {
+        padding: 25px 14px;
+    }
+
+    .admin-stat-card {
+        padding: 18px;
+    }
+
+    .admin-stat-card h2 {
+        font-size: 23px;
+    }
+
+    .admin-actions {
+        margin-top: 25px;
+    }
+
+
+    /* POPUP */
+
+    .payment-popup,
+    .booking-message-popup {
+        top: 20px;
+
+        left: 15px;
+        right: 15px;
+
+        width: auto;
+
+        text-align: center;
+
+        box-sizing: border-box;
+    }
+
+}

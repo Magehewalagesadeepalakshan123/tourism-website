@@ -3,7 +3,32 @@
 require_once "../php/auth_check.php";
 require_once "../php/db.php";
 
+
+// ============================================
+// CURRENT USER
+// ============================================
+
 $userId = $_SESSION["user_id"];
+
+
+// ============================================
+// POPUP MESSAGE
+// ============================================
+
+$bookingMessage = "";
+
+if (isset($_SESSION["booking_message"])) {
+
+    $bookingMessage =
+        $_SESSION["booking_message"];
+
+    unset($_SESSION["booking_message"]);
+}
+
+
+// ============================================
+// GET USER BOOKINGS
+// ============================================
 
 $stmt = $pdo->prepare(
     "SELECT *
@@ -14,7 +39,8 @@ $stmt = $pdo->prepare(
 
 $stmt->execute([$userId]);
 
-$bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$bookings =
+    $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -35,221 +61,391 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </title>
 
     <link
-    rel="stylesheet"
-    href="../css/style.css?v=50"
->
+        rel="stylesheet"
+        href="../css/style.css?v=100"
+    >
 
-<style>
 
-/* ===============================
-   MY BOOKINGS
-=============================== */
+    <style>
 
-.my-bookings-section {
-    background: #f4f8f7;
-    padding: 60px 8%;
-    min-height: 500px;
-}
+        /* =====================================
+           MY BOOKINGS
+        ===================================== */
 
-.my-bookings-container {
-    max-width: 1150px;
-    margin: 0 auto;
-}
+        .my-bookings-section {
+            background: #f4f8f7;
+            padding: 60px 8%;
+            min-height: 500px;
+        }
 
+        .my-bookings-container {
+            max-width: 1150px;
+            margin: 0 auto;
+        }
 
-/* BOOKING CARD */
 
-.my-booking-card {
-    background: #ffffff;
-    border-radius: 16px;
+        /* BOOKING CARD */
 
-    padding: 28px 30px;
-    margin-bottom: 25px;
+        .my-booking-card {
+            background: #ffffff;
 
-    border-left: 5px solid #16967f;
+            border-radius: 16px;
 
-    box-shadow:
-        0 8px 25px
-        rgba(0, 0, 0, 0.08);
-}
+            padding: 28px 30px;
 
+            margin-bottom: 25px;
 
-/* TOP AREA */
+            border-left: 5px solid #16967f;
 
-.booking-card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.08);
 
-    padding-bottom: 18px;
-    margin-bottom: 20px;
+            transition: 0.3s ease;
+        }
 
-    border-bottom: 1px solid #eeeeee;
-}
+        .my-booking-card:hover {
+            transform: translateY(-3px);
 
-.booking-small-title {
-    display: block;
+            box-shadow:
+                0 12px 32px
+                rgba(0, 0, 0, 0.12);
+        }
 
-    font-size: 12px;
-    color: #888;
 
-    text-transform: uppercase;
-    letter-spacing: 1px;
+        /* TOP */
 
-    margin-bottom: 5px;
-}
+        .booking-card-top {
+            display: flex;
 
-.booking-card-top h2 {
-    margin: 0;
+            justify-content: space-between;
 
-    font-size: 27px;
+            align-items: center;
 
-    color: #153f3a;
-}
+            padding-bottom: 18px;
 
+            margin-bottom: 20px;
 
-/* STATUS */
+            border-bottom:
+                1px solid #eeeeee;
+        }
 
-.booking-status {
-    background: #e3f7f1;
-    color: #16846f;
+        .booking-small-title {
+            display: block;
 
-    padding: 8px 18px;
+            font-size: 12px;
 
-    border-radius: 25px;
+            color: #888;
 
-    font-size: 14px;
-    font-weight: bold;
-}
+            text-transform: uppercase;
 
+            letter-spacing: 1px;
 
-/* INFORMATION */
+            margin-bottom: 5px;
+        }
 
-.booking-information {
-    display: grid;
+        .booking-card-top h2 {
+            margin: 0;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+            font-size: 27px;
 
-    gap: 18px;
+            color: #153f3a;
+        }
 
-    margin-bottom: 20px;
-}
 
-.booking-information > div {
-    background: #f7faf9;
+        /* STATUS */
 
-    padding: 18px;
+        .booking-status {
+            padding: 8px 18px;
 
-    border-radius: 10px;
+            border-radius: 25px;
 
-    border: 1px solid #e5eeec;
-}
+            font-size: 14px;
 
-.booking-information small {
-    display: block;
+            font-weight: bold;
+        }
 
-    color: #888;
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
 
-    font-size: 13px;
+        .status-approved {
+            background: #d4edda;
+            color: #155724;
+        }
 
-    margin-bottom: 7px;
-}
+        .status-declined {
+            background: #f8d7da;
+            color: #721c24;
+        }
 
-.booking-information strong {
-    display: block;
+        .status-cancelled {
+            background: #eeeeee;
+            color: #666666;
+        }
 
-    color: #153f3a;
+        .status-completed {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
 
-    font-size: 16px;
-}
 
+        /* INFORMATION */
 
-/* SPECIAL REQUEST */
+        .booking-information {
+            display: grid;
 
-.booking-request {
-    background: #eef8f5;
+            grid-template-columns:
+                repeat(3, 1fr);
 
-    border-radius: 10px;
+            gap: 18px;
 
-    padding: 16px 18px;
+            margin-bottom: 20px;
+        }
 
-    margin-top: 15px;
+        .booking-information > div {
+            background: #f7faf9;
 
-    line-height: 1.5;
+            padding: 18px;
 
-    color: #444;
-}
+            border-radius: 10px;
 
-.booking-request strong {
-    color: #16846f;
-}
+            border:
+                1px solid #e5eeec;
+        }
 
+        .booking-information small {
+            display: block;
 
-/* BOOKING ID */
+            color: #888;
 
-.booking-created {
-    margin-top: 20px;
+            font-size: 13px;
 
-    padding-top: 15px;
+            margin-bottom: 7px;
+        }
 
-    border-top: 1px solid #eeeeee;
+        .booking-information strong {
+            display: block;
 
-    text-align: right;
+            color: #153f3a;
 
-    color: #888;
+            font-size: 16px;
+        }
 
-    font-size: 13px;
-}
 
+        /* SPECIAL REQUEST */
 
-/* HOVER */
+        .booking-request {
+            background: #eef8f5;
 
-.my-booking-card {
-    transition: 0.3s ease;
-}
+            border-radius: 10px;
 
-.my-booking-card:hover {
-    transform: translateY(-3px);
+            padding: 16px 18px;
 
-    box-shadow:
-        0 12px 32px
-        rgba(0, 0, 0, 0.12);
-}
+            margin-top: 15px;
 
+            line-height: 1.5;
 
-/* MOBILE */
+            color: #444;
+        }
 
-@media screen and (max-width: 750px) {
+        .booking-request strong {
+            color: #16846f;
+        }
 
-    .booking-information {
-        grid-template-columns: 1fr;
-    }
 
-    .booking-card-top {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
+        /* CANCEL BUTTON */
 
-}
+        .cancel-booking-form {
+            margin-top: 20px;
+        }
 
-</style>
+        .cancel-booking-btn {
+            background: #e63446;
 
+            color: white;
 
+            border: none;
 
+            padding: 12px 24px;
 
+            border-radius: 8px;
 
+            font-weight: 600;
 
+            cursor: pointer;
+        }
 
+        .cancel-booking-btn:hover {
+            background: #bd2635;
+        }
 
+        .booking-cancelled-text {
+            margin-top: 20px;
+
+            color: #dc3545;
+
+            font-weight: 600;
+        }
+
+
+        /* PAYMENT */
+
+        .payment-btn {
+            display: inline-block;
+
+            margin-top: 20px;
+
+            padding: 12px 24px;
+
+            background: #16967f;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-weight: 600;
+        }
+
+        .payment-btn:hover {
+            background: #11725f;
+        }
+
+        .payment-completed-text {
+            margin-top: 20px;
+
+            color: #16846f;
+
+            font-weight: 700;
+        }
+
+
+        /* BOOKING ID */
+
+        .booking-created {
+            margin-top: 20px;
+
+            padding-top: 15px;
+
+            border-top:
+                1px solid #eeeeee;
+
+            text-align: right;
+
+            color: #888;
+
+            font-size: 13px;
+        }
+
+
+        /* POPUP */
+
+        .booking-message-popup {
+            position: fixed;
+
+            top: 90px;
+
+            right: 30px;
+
+            background: #16967f;
+
+            color: white;
+
+            padding: 15px 22px;
+
+            border-radius: 10px;
+
+            z-index: 9999;
+
+            box-shadow:
+                0 6px 20px
+                rgba(0, 0, 0, 0.2);
+
+            transition: 0.5s;
+        }
+
+        .booking-message-popup.hide {
+            opacity: 0;
+
+            transform:
+                translateX(50px);
+        }
+
+
+        /* NO BOOKINGS */
+
+        .no-bookings {
+            background: white;
+
+            padding: 60px 40px;
+
+            text-align: center;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        /* MOBILE */
+
+        @media screen and (max-width: 750px) {
+
+            .booking-information {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-card-top {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+            }
+
+        }
+
+    </style>
 
 </head>
+
 
 <body>
 
 
-<!-- NAVBAR -->
+<!-- =========================================
+     MESSAGE POPUP
+========================================= -->
+
+<?php if ($bookingMessage !== ""): ?>
+
+    <div
+        class="booking-message-popup"
+        id="bookingMessagePopup"
+    >
+
+        ✓
+
+        <?php
+        echo htmlspecialchars(
+            $bookingMessage
+        );
+        ?>
+
+    </div>
+
+<?php endif; ?>
+
+
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
 
 <nav class="navbar">
 
@@ -307,7 +503,9 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </nav>
 
 
-<!-- HEADER -->
+<!-- =========================================
+     HEADER
+========================================= -->
 
 <section class="booking-header">
 
@@ -330,19 +528,28 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </section>
 
 
-<!-- BOOKINGS -->
+
+<!-- =========================================
+     BOOKINGS
+========================================= -->
 
 <section class="my-bookings-section">
 
     <div class="my-bookings-container">
+
 
         <?php if (count($bookings) > 0): ?>
 
 
             <?php foreach ($bookings as $booking): ?>
 
+
                 <div class="my-booking-card">
 
+
+                    <!-- =========================
+                         CARD TOP
+                    ========================== -->
 
                     <div class="booking-card-top">
 
@@ -353,37 +560,46 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </span>
 
                             <h2>
+
                                 <?php
                                 echo htmlspecialchars(
                                     $booking["destination"]
                                 );
                                 ?>
+
                             </h2>
 
                         </div>
 
 
                         <span
-    class="booking-status status-<?php
-        echo strtolower(
-            $booking["status"]
-        );
-    ?>"
->
+                            class="booking-status status-<?php
+                                echo strtolower(
+                                    $booking["status"]
+                                );
+                            ?>"
+                        >
 
-    <?php
-    echo htmlspecialchars(
-        $booking["status"]
-    );
-    ?>
+                            <?php
+                            echo htmlspecialchars(
+                                $booking["status"]
+                            );
+                            ?>
 
-</span>
+                        </span>
 
                     </div>
 
 
+
+                    <!-- =========================
+                         INFORMATION
+                    ========================== -->
+
                     <div class="booking-information">
 
+
+                        <!-- DATE -->
 
                         <div>
 
@@ -392,15 +608,19 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </small>
 
                             <strong>
+
                                 <?php
                                 echo htmlspecialchars(
                                     $booking["travel_date"]
                                 );
                                 ?>
+
                             </strong>
 
                         </div>
 
+
+                        <!-- TRAVELLERS -->
 
                         <div>
 
@@ -409,15 +629,19 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </small>
 
                             <strong>
+
                                 <?php
                                 echo htmlspecialchars(
                                     $booking["travellers"]
                                 );
                                 ?>
+
                             </strong>
 
                         </div>
 
+
+                        <!-- PHONE -->
 
                         <div>
 
@@ -426,11 +650,13 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </small>
 
                             <strong>
+
                                 <?php
                                 echo htmlspecialchars(
                                     $booking["customer_phone"]
                                 );
                                 ?>
+
                             </strong>
 
                         </div>
@@ -438,6 +664,11 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     </div>
 
+
+
+                    <!-- =========================
+                         SPECIAL REQUEST
+                    ========================== -->
 
                     <?php
                     if (
@@ -464,9 +695,86 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php endif; ?>
 
 
+
+                    <!-- =========================
+                         CANCEL BOOKING
+                    ========================== -->
+
+                    <?php if ($booking["status"] === "Pending"): ?>
+
+                        <form
+                            action="../php/cancel_booking.php"
+                            method="POST"
+                            class="cancel-booking-form"
+                            onsubmit="
+                                return confirm(
+                                    'Are you sure you want to cancel this booking?'
+                                );
+                            "
+                        >
+
+                            <input
+                                type="hidden"
+                                name="booking_id"
+                                value="<?php
+                                    echo $booking["id"];
+                                ?>"
+                            >
+
+                            <button
+                                type="submit"
+                                class="cancel-booking-btn"
+                            >
+                                Cancel Booking
+                            </button>
+
+                        </form>
+
+
+                    <?php elseif ($booking["status"] === "Cancelled"): ?>
+
+                        <p class="booking-cancelled-text">
+                            This booking has been cancelled.
+                        </p>
+
+                    <?php endif; ?>
+
+
+
+                    <!-- =========================
+                         PAYMENT
+                    ========================== -->
+
+                    <?php if ($booking["status"] === "Approved"): ?>
+
+                        <a
+                            href="payment.php?booking_id=<?php
+                                echo $booking["id"];
+                            ?>"
+                            class="payment-btn"
+                        >
+                            Proceed to Payment
+                        </a>
+
+
+                    <?php elseif ($booking["status"] === "Completed"): ?>
+
+                        <p class="payment-completed-text">
+                            ✓ Payment Completed
+                        </p>
+
+                    <?php endif; ?>
+
+
+
+                    <!-- =========================
+                         BOOKING ID
+                    ========================== -->
+
                     <div class="booking-created">
 
                         Booking ID:
+
                         #<?php
                         echo $booking["id"];
                         ?>
@@ -476,11 +784,14 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 </div>
 
+
             <?php endforeach; ?>
 
 
         <?php else: ?>
 
+
+            <!-- NO BOOKINGS -->
 
             <div class="no-bookings">
 
@@ -505,10 +816,16 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <?php endif; ?>
 
+
     </div>
 
 </section>
 
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
 
 <footer>
 
@@ -520,6 +837,42 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
 </footer>
+
+
+
+<!-- =========================================
+     POPUP JAVASCRIPT
+========================================= -->
+
+<script>
+
+const bookingMessagePopup =
+    document.getElementById(
+        "bookingMessagePopup"
+    );
+
+
+if (bookingMessagePopup) {
+
+    setTimeout(function () {
+
+        bookingMessagePopup.classList.add(
+            "hide"
+        );
+
+
+        setTimeout(function () {
+
+            bookingMessagePopup.remove();
+
+        }, 500);
+
+
+    }, 3000);
+
+}
+
+</script>
 
 
 </body>
